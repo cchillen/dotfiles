@@ -83,6 +83,9 @@ call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" ALE
+Plug 'dense-analysis/ale'
+
 " Theme
 Plug 'joshdick/onedark.vim'
 
@@ -90,11 +93,14 @@ Plug 'joshdick/onedark.vim'
 Plug 'sheerun/vim-polyglot'
 
 " Python
-Plug 'davidhalter/jedi-vim'
-Plug 'nvie/vim-flake8'
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'nvie/vim-flake8', { 'for': 'python' }
 
 " CoffeeScript
-Plug 'kchmck/vim-coffee-script'
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
+
+" Rust
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -105,6 +111,13 @@ call plug#end()
 colorscheme onedark
 let g:onedark_terminal_italics = 1
 let g:airline_theme='onedark'
+
+" ALE Settings
+let g:ale_linters = {
+\  'rust': ['analyzer'],
+\}
+
+let g:ale_fixers = { 'rust': ['rustfmt', 'trim_whitespace', 'remove_trailing_lines'] }
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
