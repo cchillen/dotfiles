@@ -114,10 +114,13 @@ let g:airline_theme='onedark'
 
 " ALE Settings
 let g:ale_linters = {
-\  'rust': ['analyzer'],
-\}
+            \  'rust': ['rls'],
+            \ }
+let g:ale_rust_rls_toolchain = 'stable'
 
 let g:ale_fixers = { 'rust': ['rustfmt', 'trim_whitespace', 'remove_trailing_lines'] }
+
+let g:ale_completion_enabled = 1
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
