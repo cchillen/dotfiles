@@ -105,6 +105,10 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " Git
 Plug 'tpope/vim-fugitive'
 
+" Fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 " Plugin Dependent Settings
