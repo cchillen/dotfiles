@@ -126,6 +126,24 @@ let g:ale_fixers = { 'rust': ['rustfmt', 'trim_whitespace', 'remove_trailing_lin
 
 let g:ale_completion_enabled = 1
 
+function ALELSPMappings()
+    let lsp_found=0
+    for linter in ale#linter#Get(&filetype)
+        if !empty(linter.lsp) && ale#lsp_linter#CheckWithLSP(bufnr(''), linter)
+            let lsp_found=1
+        endif
+    endfor
+    if (lsp_found)
+        nnoremap <buffer> K :ALEDocumentation<cr>
+        nnoremap <buffer> gr :ALEFindReferences<cr>
+        nnoremap <buffer> gd :ALEGoToDefinition<cr>
+        nnoremap <buffer> gy :ALEGoToTypeDefinition<cr>
+        nnoremap <buffer> gh :ALEHover<cr>
+
+        setlocal omnifunc=ale#completion#OmniFunc
+    endif
+endfunction
+
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
